@@ -1,11 +1,11 @@
 <div class="col-md-4">
-	<li id="event-<%= event.id %>">
-	  <span><%= event.sport.name %></span>
-	  <span class="user"><%= link_to event.user.name, event.user %></span>
-	  <span class="description"><%= event.description %></span>
+	<div id="event-<%= event.id %>">
+	  <span class="sport">Sport type: <%= event.sport.name %></span><br>
+	  <span class="user">Game owner: <%= link_to event.user.name, event.user %></span><br>
+	  <span class="description">Additional info: <%= event.description %></span><br>
 	  <span class="timestamp">
 	    Posted <%= time_ago_in_words(event.created_at) %> ago.
 	  </span>
-	</li>
+	</div>
 	<%= link_to image_tag("basketball_logo.png", class: "thumbnail img-responsive", alt: "Basketball logo"), '#' %>
 </div>
