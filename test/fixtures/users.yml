@@ -1,0 +1,4 @@
+genchew:
+  name: Genchew Sportan
+  email: genchew@sportan.com
+  password_digest: <%= User.digest('password') %>
