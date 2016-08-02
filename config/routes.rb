@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get    '/events/new',   to: 'events#new'
+  post   '/events/new',   to: 'events#create'
+
   get 'sessions/new'
 
   get 'users/new'
@@ -24,7 +27,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
 
-  root to: "homepage#home"
+  #root to: "homepage#home"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
