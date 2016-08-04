@@ -30,11 +30,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bootstrap-sass', '3.3.6'
-
-gem 'bcrypt', '3.1.11'
-
-gem 'omniauth-facebook', '4.0.0'
+gem 'bootstrap-sass', 		'3.3.6'
+gem 'bcrypt', 				'3.1.11'
+gem 'omniauth-facebook', 	'4.0.0'
+gem 'carrierwave',			'0.11.2'
+gem 'mini_magick',          '4.5.1'
+gem 'fog',                  '1.38.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
