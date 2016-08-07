@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
-  	@event = Event.find[params[:id]]
+  	@event = Event.find(params[:id])
   end
 
   def create
@@ -23,7 +23,10 @@ class EventsController < ApplicationController
 
   def event_params
   	params.require(:event).permit(:name, 
-  								 :description, :sport_id)
+  								 :description, 
+  								 :sport_id, 
+  								 :place_id,
+  								 :number_of_attendees_needed)
   end
 
 end

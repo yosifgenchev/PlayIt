@@ -1,11 +1,31 @@
-<div class="col-md-4">
-	<div id="event-<%= event.id %>">
-	  <span class="sport">Sport type: <%= event.sport.name %></span><br>
-	  <span class="user">Game owner: <%= link_to event.user.name, event.user %></span><br>
-	  <span class="description">Additional info: <%= event.description %></span><br>
-	  <span class="timestamp">
-	    Posted <%= time_ago_in_words(event.created_at) %> ago.
-	  </span>
+<div class="col-md-4 center">
+	<div class="thumbnail">
+		<div id="event-<%= event.id %>">
+		  <%= link_to image_tag(event.sport.picture, alt: "Sport picture"), '#' %>
+		  <br>
+		  <span class="game"><%= event.name %></span>
+		  <br>
+		  <span class="description">Additional info: <%= event.description %></span>
+		  <br>
+		  <span class="place"><%= link_to event.place.name, event.place %></span>
+		  <%= link_to image_tag(event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), event %>
+
+		  <div class="progress">
+		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(event) %>" aria-valuemin="0" aria-valuemax="<%= event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(event) %>%;">
+		    	<%= @userEventCount %> / <%= event.number_of_attendees_needed %>
+		  	</div>
+		  </div>
+
+		  <%= link_to "Wanna play!", event , class: "btn btn-md btn-primary" %>
+		  <br>
+		  <br>
+		  <%= image_tag(event.user.picture.url, class: "img-circle", size: '25x25' ) if event.user.picture? %>
+		  <%= link_to event.user.name, event.user %>
+		  <br>
+		  <span class="timestamp">
+		    Posted <%= time_ago_in_words(event.created_at) %> ago
+		  </span>
+		</div>
 	</div>
-	<%= link_to image_tag("basketball_logo.png", class: "thumbnail img-responsive", alt: "Basketball logo"), '#' %>
+	<br>
 </div>

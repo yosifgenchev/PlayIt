@@ -1,0 +1,41 @@
+<% provide(:title, @event.name) %>
+<div class="jumbotron center">
+	  <%= link_to image_tag(@event.sport.picture, alt: "Sport picture"), '#' %>
+	<span class="game"><%= @event.name %></span><br>
+</div>
+<div class="container">
+
+	<div class="col-md-4 center">
+		<div id="event-<%= @event.id %>">
+
+		  <span class="timestamp">
+		    Posted <%= time_ago_in_words(@event.created_at) %> ago by <%= link_to @event.user.name, @event.user %>
+		  </span><br>
+		  <span class="place"><%= link_to @event.place.name, @event.place %></span><br>
+		  <%= link_to image_tag(@event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), '#' %>
+		  <span class="description">Additional info: <%= @event.description %></span><br>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+	<div class="progress">
+		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(@event) %>" aria-valuemin="0" aria-valuemax="<%= @event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(@event) %>%;">
+		    	<%= @userEventCount %> / <%= @event.number_of_attendees_needed %>
+		  	</div>
+		  </div>
+	  <ol>
+		<% @event.attendees.each do |attendee| %>
+		   <li><%= (attendee.picture?) ? 
+		   			image_tag(attendee.picture.url, class: "img-circle", size: '25x25' ) :
+		   			image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '25x25' ) %>
+		   		<%= link_to attendee.name, attendee %>
+		   	</li>
+		   	<br>
+		<% end %>
+	  </ol>
+	  <% if logged_in? %>
+		<div class="text-center"><%= render 'attend_form' %></div>
+	  <% end %>
+	</div>
+
+</div>
