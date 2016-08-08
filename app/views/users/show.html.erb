@@ -1,5 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="jumbotron center">
+	<%= image_tag(@user.picture.url, class: "img-circle", size: '100x100' ) if @user.picture? %>
 	<h1>
 		<%= @user.name %>
 	</h1>
@@ -7,3 +8,10 @@
 		<%= @user.email %>
 	</h3>
 </div>
+
+<div class="row">	
+	<% @user.events.each do |e| %>
+		<%= e.name %>
+	<% end %>
+</div>
+
