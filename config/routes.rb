@@ -11,23 +11,23 @@ Rails.application.routes.draw do
 
   get    '/help', 		to: 'static_pages#help'
   get    '/contacts', 	to: 'static_pages#contacts'
-  get    '/home', 		to: 'homepage#home'
   get    '/signup',		to: 'users#new'
   post 	 '/signup',  	to: 'users#create'
   get    '/login',   	to: 'sessions#new'
   post   '/login',   	to: 'sessions#create'
   delete '/logout',  	to: 'sessions#destroy'
 
-  resources :users
-
   get 'auth/:provider/callback', to: 'sessions#createFacebook'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroyFacebook', as: 'signout'
 
+  resources :users
+  resources :places
+  resources :events
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
 
-  #root to: "homepage#home"
+  resources :userevents, only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
