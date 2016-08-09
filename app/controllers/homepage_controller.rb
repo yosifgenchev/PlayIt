@@ -5,10 +5,11 @@ class HomepageController < ApplicationController
   	 	@events = @events + user.events
   	 end
 
-  	 @basketballEvents = []
-  	 @events.each do |event|
-  	 	@basketballEvents << event if event.sport.name == 'Basketball'
-  	 end
+     #Do not delete! This could be used as a prototype.
+  	 #@basketballEvents = []
+  	 #@events.each do |event|
+  	 #	@basketballEvents << event if event.sport.name == 'Basketball'
+  	 #end
 
   end
 end

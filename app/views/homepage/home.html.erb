@@ -1,16 +1,19 @@
 <% provide(:title, "Home") %>
-<div class="jumbotron container-fluid center">
-	<h1>Welcome to PlayIt</h1>
-	<h2>We believe in bringing all people on one pitch</h2>
 
-	<%= link_to "Start playing", signup_path, class: "btn btn-lg btn-primary" %>
+<% unless logged_in? %>
+	<div class="jumbotron container-fluid center">
+		<h1>Welcome to PlayIt</h1>
+		<h2>We believe in bringing all people on one pitch</h2>
 
-</div>
+		<%= link_to "Start playing", signup_path, class: "btn btn-lg btn-primary" %>
+
+	</div>
+<% end %>
+
+<br>
 
 <div class="row">
-	<%= render @events %>
-</div>
-
-<div class="row">
-	<%= render @basketballEvents %>
+	<% unless @events.nil? %>
+		<%= render @events %>
+	<% end %>
 </div>
