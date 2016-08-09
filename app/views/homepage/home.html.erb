@@ -1,0 +1,16 @@
+<% provide(:title, "Home") %>
+<div class="jumbotron container-fluid center">
+	<h1>Welcome to PlayIt</h1>
+	<h2>We believe in bringing all people on one pitch</h2>
+
+	<%= link_to "Start playing", signup_path, class: "btn btn-lg btn-primary" %>
+
+</div>
+
+<div class="row">
+	<%= render @events %>
+</div>
+
+<div class="row">
+	<%= render @basketballEvents %>
+</div>

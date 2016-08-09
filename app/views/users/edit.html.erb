@@ -1,0 +1,39 @@
+<% provide(:title, 'Edit user') %>
+<% provide(:button_text, 'Save changes') %>
+<h1>Update your profile</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user, html: { multipart: true }) do |f| %>
+      <%= render 'shared/error_messages', object: @user %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
+      <%= image_tag(@user.picture.url, class: "img-circle", size: '100x100' ) if @user.picture? %>
+
+      <span class="picture">
+        <%= f.file_field :picture %>
+      </span>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
