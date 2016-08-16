@@ -15,8 +15,13 @@
 		    	<%= @userEventCount %> / <%= event.number_of_attendees_needed %>
 		  	</div>
 		  </div>
+		  
+		  <% if logged_in? %>
+		  	<%= link_to "Wanna play!", event , class: "btn btn-md btn-primary" %>
+		  <% else %>
+		  	<%= link_to "Wanna play!", signup_path , class: "btn btn-md btn-primary" %>
+		  <% end %>
 
-		  <%= link_to "Wanna play!", event , class: "btn btn-md btn-primary" %>
 		  <br>
 		  <br>
 		  <%= image_tag(event.user.picture.url, class: "img-circle", size: '25x25' ) if event.user.picture? %>
