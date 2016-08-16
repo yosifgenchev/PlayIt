@@ -5,22 +5,21 @@ class User < ApplicationRecord
   has_many :attended_events, through: :userevents
 
   attr_accessor :remember_token
-	before_save { self.email = email.downcase }
+	# before_save { self.email = email.downcase }
   mount_uploader :picture, PictureUploader
-	validates :name,  presence: true, 
-					  length: { maximum: 50 }
+	# validates :name,  presence: true, 
+	# 				  length: { maximum: 50 }
 
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  	validates :email, presence: true, 
-  					  length: { maximum: 255 },
-  				      format: { with: VALID_EMAIL_REGEX },
-  				      uniqueness: { case_sensitive: false }
+	# VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+ #  	validates :email, presence: true, 
+ #  					  length: { maximum: 255 },
+ #  				      format: { with: VALID_EMAIL_REGEX },
+ #  				      uniqueness: { case_sensitive: false }
 
- 	validates :password, presence: true, 
- 						 length: { minimum: 6 },
-             allow_nil: true
+ # 	validates :password, presence: true, 
+ # 						 length: { minimum: 6 }
 
- 	has_secure_password
+ 	# has_secure_password
 
   validate  :picture_size
 
@@ -56,11 +55,10 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(auth.slice( auth[:provider], auth[:uid])).first_or_initialize.tap do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
-      user.email = auth.info.email
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
