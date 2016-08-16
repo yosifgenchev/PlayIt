@@ -1,6 +1,8 @@
 <% provide(:title, @event.name) %>
-<div class="jumbotron center">
-	  <%= link_to image_tag(@event.sport.picture, alt: "Sport picture"), '#' %>
+<div class="jumbotron center container-fluid">
+	<% unless @event.sport.picture.nil? %>
+		<%= link_to image_tag(@event.sport.picture, class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
+	<% end %>
 	<span class="game"><%= @event.name %></span><br>
 </div>
 <div class="container">
@@ -12,11 +14,12 @@
 		    Posted <%= time_ago_in_words(@event.created_at) %> ago by <%= link_to @event.user.name, @event.user %>
 		  </span><br>
 		  <span class="place"><%= link_to @event.place.name, @event.place %></span><br>
-		  <%= link_to image_tag(@event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), '#' %>
+		  <% unless @event.place.picture.nil? %>
+		  	<%= link_to image_tag(@event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), '#' %>
+		  <% end %>
 		  <span class="description">Additional info: <%= @event.description %></span><br>
 		</div>
 	</div>
-
 	<div class="col-md-4">
 	<div class="progress">
 		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(@event) %>" aria-valuemin="0" aria-valuemax="<%= @event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(@event) %>%;">
@@ -37,5 +40,30 @@
 		<div class="text-center"><%= render 'attend_form' %></div>
 	  <% end %>
 	</div>
+	<div class="col-md-4">
+		<%= @event.place.lat %>
+		<%= @event.place.lng %>
+		<%=raw @hash.to_json %>
+		<div style='width: 400px;'>
+		  <div id="map" style='width: 400px; height: 400px;'></div>
+		</div>
+	</div>
 
 </div>
+
+<script type="text/javascript">
+	handler = Gmaps.build('Google');
+	handler.buildMap({ 
+		provider: {
+			zoom: 8
+		}, 
+		internal: {
+			id: 'map'
+		}
+	}, function(){
+	  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+	  handler.bounds.extendWith(markers);
+	  handler.fitMapToBounds();
+	  handler.getMap().setZoom(17);
+	});
+</script>

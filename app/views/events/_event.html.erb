@@ -8,8 +8,9 @@
 		  <span class="description">Additional info: <%= event.description %></span>
 		  <br>
 		  <span class="place"><%= link_to event.place.name, event.place %></span>
+		  <% unless event.place.picture.nil? %>
 		  <%= link_to image_tag(event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), event %>
-
+		  <% end %>
 		  <div class="progress">
 		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(event) %>" aria-valuemin="0" aria-valuemax="<%= event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(event) %>%;">
 		    	<%= @userEventCount %> / <%= event.number_of_attendees_needed %>
