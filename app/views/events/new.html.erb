@@ -14,6 +14,12 @@
 
       <%= f.collection_select(:place_id, Place.all, :id, :name) %>
 
+      <%= f.text_field :name, :id => 'gmaps-input-address', :placeholder => 'Start typing a place...' %>
+            <br/>
+      Latitude: <span id='gmaps-output-latitude'></span>
+      <br/>
+      Longitude: <span id='gmaps-output-longitude'></span>
+      <br/>
       <%= f.label :number_of_players %>
       <%= f.text_field :number_of_attendees_needed, class: 'form-control' %>
 
