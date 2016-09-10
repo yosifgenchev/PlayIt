@@ -16,11 +16,7 @@
 		  	</div>
 		  </div>
 		  
-		  <% if logged_in? %>
-		  	<%= link_to "Wanna play!", event , class: "btn btn-md btn-primary" %>
-		  <% else %>
-		  	<%= link_to "Wanna play!", signup_path , class: "btn btn-md btn-primary" %>
-		  <% end %>
+		  <%= link_to "Wanna play!", event, class: "btn btn-md btn-primary" %>
 
 		  <br>
 		  <br>

@@ -28,10 +28,17 @@
             <li class="dropdown">
               <button class="dropbtn">
                 <li class="navbar-avatar">
-                  <%= @hasPicture ? 
-                    image_tag(@picture, class: "img-circle", size: '30x30') :
-                    image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '30x30' ) %>
-                  <%= @userName %>
+
+                <% if (current_user.uid.nil?) %>
+                    <%= !current_user.picture.nil? ? 
+                      image_tag(current_user.picture, class: "img-circle", size: "30x30") :
+                      image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: "30x30" ) %>
+                <% else %>
+                  <%= current_user.picture.nil? ? 
+                    image_tag("https://graph.facebook.com/v2.6/#{current_user.uid}/picture", class: "img-circle", size: "30x30") :
+                    image_tag(current_user.picture, class: "img-circle", size: "30x30") %>
+                <% end %>
+                <%= current_user.name %>
                 </li>
               </button>
               <ul class="dropdown-content">
