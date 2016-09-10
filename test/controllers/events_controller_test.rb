@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get events_new_url
-    assert_response :success
+  test "should not get new when not logged in" do
+    get events_new_path
+    assert_response :redirect
   end
-
 end

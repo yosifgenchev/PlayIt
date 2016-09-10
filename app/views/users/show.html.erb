@@ -1,6 +1,16 @@
 <% provide(:title, @user.name) %>
 <div class="jumbotron center">
-	<%= image_tag(@user.picture.url, class: "img-circle", size: '100x100' ) if @user.picture? %>
+
+	<% if (current_user.uid.nil?) %>
+		<%= !current_user.picture.nil? ? 
+            image_tag(current_user.picture, class: "img-circle", size: '100x100') :
+            image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '100x100') %>
+    <% else %>
+    	<%= current_user.picture.nil? ? 
+            image_tag("http://graph.facebook.com/v2.6/#{current_user.uid}/picture", class: "img-circle", size: "100x100") :
+            image_tag(current_user.picture, class: "img-circle", size: '100x100') %>
+    <% end %>
+
 	<h1>
 		<%= @user.name %>
 	</h1>
@@ -9,9 +19,12 @@
 	</h3>
 </div>
 
-<div class="row">	
-	<% @user.events.each do |e| %>
-		<%= e.name %>
-	<% end %>
+<div class="container">
+	<div class="row">	
+		<% @user.events.each do |e| %>
+			<%= e.name %>
+		<% end %>
+	</div>
 </div>
+
 

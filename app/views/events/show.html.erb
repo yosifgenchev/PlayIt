@@ -7,7 +7,7 @@
 </div>
 <div class="container">
 
-	<div class="col-md-4 center">
+	<div class="col-md-4">
 		<div id="event-<%= @event.id %>">
 
 		  <span class="timestamp">
@@ -20,26 +20,28 @@
 		  <span class="description">Additional info: <%= @event.description %></span><br>
 		</div>
 	</div>
+
 	<div class="col-md-4">
-	<div class="progress">
+		<div class="progress">
 		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(@event) %>" aria-valuemin="0" aria-valuemax="<%= @event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(@event) %>%;">
 		    	<%= @userEventCount %> / <%= @event.number_of_attendees_needed %>
 		  	</div>
-		  </div>
-	  <ol>
-		<% @event.attendees.each do |attendee| %>
-		   <li><%= (attendee.picture?) ? 
+		</div>
+
+	  	<ol>
+			<% @event.attendees.each do |attendee| %>
+		   		<li><%= (attendee.picture?) ? 
 		   			image_tag(attendee.picture.url, class: "img-circle", size: '25x25' ) :
 		   			image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '25x25' ) %>
-		   		<%= link_to attendee.name, attendee %>
-		   	</li>
-		   	<br>
-		<% end %>
-	  </ol>
-	  <% if logged_in? %>
+		   			<%= link_to attendee.name, attendee %>
+		   		</li>
+		   		<br>
+			<% end %>
+	  	</ol>
 		<div class="text-center"><%= render 'attend_form' %></div>
-	  <% end %>
 	</div>
+</div>
+
 	<div class="col-md-4">
 		<%= @event.place.lat %>
 		<%= @event.place.lng %>
@@ -48,7 +50,6 @@
 		  <div id="map" style='width: 400px; height: 400px;'></div>
 		</div>
 	</div>
-
 </div>
 
 <script type="text/javascript">

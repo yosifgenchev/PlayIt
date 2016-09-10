@@ -7,12 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+User.create!(name:  "Example User",
+             email: "example@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar")
 
-users = User.take(2)
-
-10.times do
-	name = "Basketball"
-	description = "Be on time"
-
-	users.each { |user| user.events.create!(name: name, description: description) }
+10.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+              email: email,
+              password:              password,
+              password_confirmation: password)
 end

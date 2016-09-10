@@ -14,6 +14,8 @@
 
 <div class="row">
 	<% unless @events.nil? %>
-		<%= render @events %>
+		<% @events.each do |event| %>
+    <%= render event %>
+  <% end %>
 	<% end %>
 </div>
