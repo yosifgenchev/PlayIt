@@ -11,13 +11,5 @@ class HomepageController < ApplicationController
   	 #	@basketballEvents << event if event.sport.name == 'Basketball'
   	 #end
 
-     if logged_in?
-        @picture = current_user.picture.url
-        @userName = current_user.name
-
-        @hasPicture = !@picture.nil?
-     end
-     
-
   end
 end
