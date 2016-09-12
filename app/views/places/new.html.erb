@@ -1,0 +1,48 @@
+<% provide(:title, 'Create place') %>
+<h1>Create place</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@place, url: places_new_path) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, :id => 'geocomplete', :type => 'text', :placeholder => 'Start typing a place...' %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+
+      <%= f.label :lat %>
+      <%= f.text_field :lat, class: 'form-control', :datageo => 'lat', :type => 'hidden' %>
+
+      <%= f.label :lng %>
+      <%= f.text_field :lng, class: 'form-control', :datageo => 'lng', :type => 'hidden' %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+
+      <%= f.submit "Create my place", class: "btn btn-primary" %>
+    <% end %>
+
+    
+  </div>
+
+  <div class="map_canvas"></div>
+
+</div>
+
+
+<script>
+
+      $(function(){
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          details: "form",
+          types: ["geocode", "establishment"],
+          details: "form",
+          detailsAttribute: "datageo"
+        });
+
+        $("#find").click(function(){
+          $("#geocomplete").trigger("geocode");
+        });
+      });
+    </script>

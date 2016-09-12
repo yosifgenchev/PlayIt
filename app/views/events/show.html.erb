@@ -1,5 +1,5 @@
 <% provide(:title, @event.name) %>
-<div class="jumbotron center container-fluid">
+<div class="jumbotron container-fluid center">
 	<% unless @event.sport.picture.nil? %>
 		<%= link_to image_tag(@event.sport.picture, class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
 	<% end %>
@@ -40,7 +40,6 @@
 	  	</ol>
 		<div class="text-center"><%= render 'attend_form' %></div>
 	</div>
-</div>
 
 	<div class="col-md-4">
 		<%= @event.place.lat %>
@@ -50,21 +49,7 @@
 		  <div id="map" style='width: 400px; height: 400px;'></div>
 		</div>
 	</div>
-</div>
 
-<script type="text/javascript">
-	handler = Gmaps.build('Google');
-	handler.buildMap({ 
-		provider: {
-			zoom: 8
-		}, 
-		internal: {
-			id: 'map'
-		}
-	}, function(){
-	  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-	  handler.bounds.extendWith(markers);
-	  handler.fitMapToBounds();
-	  handler.getMap().setZoom(17);
-	});
-</script>
+
+	<%= link_to "Edit event", edit_event_path(@event) %>
+</div>

@@ -4,7 +4,7 @@ class CreateUserevents < ActiveRecord::Migration[5.0]
 		t.integer :attendee_id
     	t.integer :attended_event_id
       
-      t.timestamps
+      	t.timestamps
     end
   end
 end
