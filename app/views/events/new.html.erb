@@ -10,16 +10,10 @@
       <%= f.label :description %>
       <%= f.text_field :description, class: 'form-control' %>
 
+      <%= f.hidden_field :place_id, class: 'form-control', :value => params['place_id_param'] %>
+
       <%= f.collection_select(:sport_id, Sport.all, :id, :name) %>
 
-      <%= f.collection_select(:place_id, Place.all, :id, :name) %>
-
-      <%= f.text_field :name, :id => 'gmaps-input-address', :placeholder => 'Start typing a place...' %>
-            <br/>
-      Latitude: <span id='gmaps-output-latitude'></span>
-      <br/>
-      Longitude: <span id='gmaps-output-longitude'></span>
-      <br/>
       <%= f.label :number_of_players %>
       <%= f.text_field :number_of_attendees_needed, class: 'form-control' %>
 
@@ -45,21 +39,4 @@
         <input name="id" type="text" value="">
 
         </form>
-
-        <div class="map_canvas"></div>
 </div>
-
-
-<script>
-      $(function(){
-        $("#geocomplete").geocomplete({
-          map: ".map_canvas",
-          details: "form",
-          types: ["geocode", "establishment"],
-        });
-
-        $("#find").click(function(){
-          $("#geocomplete").trigger("geocode");
-        });
-      });
-    </script>

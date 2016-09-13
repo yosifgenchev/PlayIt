@@ -42,14 +42,25 @@
 	</div>
 
 	<div class="col-md-4">
-		<%= @event.place.lat %>
-		<%= @event.place.lng %>
-		<%=raw @hash.to_json %>
-		<div style='width: 400px;'>
-		  <div id="map" style='width: 400px; height: 400px;'></div>
-		</div>
+		<div id="geocomplete" class="map_canvas"></div>
 	</div>
-
 
 	<%= link_to "Edit event", edit_event_path(@event) %>
 </div>
+
+
+
+<script>
+
+      $(function(){
+      	var lat = <%= @event.place.lat %>;
+      	var lng = <%= @event.place.lng %>;
+
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          types: ["geocode", "establishment"],
+          location: [lat, lng]
+        });
+
+      });
+    </script>

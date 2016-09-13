@@ -1,5 +1,5 @@
-<% provide(:title, 'Create place') %>
-<h1>Create place</h1>
+<% provide(:title, 'Choose a place') %>
+<h1>Choose a place</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -10,16 +10,10 @@
       <%= f.label :description %>
       <%= f.text_field :description, class: 'form-control' %>
 
-      <%= f.label :lat %>
       <%= f.text_field :lat, class: 'form-control', :datageo => 'lat', :type => 'hidden' %>
-
-      <%= f.label :lng %>
       <%= f.text_field :lng, class: 'form-control', :datageo => 'lng', :type => 'hidden' %>
 
-      <%= f.label :address %>
-      <%= f.text_field :address, class: 'form-control' %>
-
-      <%= f.submit "Create my place", class: "btn btn-primary" %>
+      <%= f.submit "Create event", class: "btn btn-primary" %>
     <% end %>
 
     
@@ -28,7 +22,6 @@
   <div class="map_canvas"></div>
 
 </div>
-
 
 <script>
 
