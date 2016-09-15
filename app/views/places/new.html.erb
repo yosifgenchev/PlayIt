@@ -13,13 +13,13 @@
       <%= f.text_field :lat, class: 'form-control', :datageo => 'lat', :type => 'hidden' %>
       <%= f.text_field :lng, class: 'form-control', :datageo => 'lng', :type => 'hidden' %>
 
-      <%= f.submit "Create event", class: "btn btn-primary" %>
+      <%= f.submit "Create place", class: "btn btn-primary" %>
     <% end %>
-
-    
   </div>
+</div>
 
-  <div class="map_canvas"></div>
+<div class="row">
+  
 
 </div>
 
@@ -27,7 +27,6 @@
 
       $(function(){
         $("#geocomplete").geocomplete({
-          map: ".map_canvas",
           details: "form",
           types: ["geocode", "establishment"],
           details: "form",
