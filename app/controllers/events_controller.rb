@@ -5,9 +5,13 @@ class EventsController < ApplicationController
   	@event = Event.new
   end
 
+  def index
+    @events = Event.all
+  end
+
   def show
   	@event = Event.find(params[:id])
-
+    
     @hash = Gmaps4rails.build_markers(@event) do |e, marker|
       marker.lat e.place.lat
       marker.lng e.place.lng
@@ -17,8 +21,9 @@ class EventsController < ApplicationController
   def create
   	@event = current_user.events.build(event_params)
     if @event.save
+      current_user.attend!(@event)
       flash[:success] = "Event created!"
-      redirect_to root_url
+      redirect_to @event
     else
       render 'homepage/home'
     end
