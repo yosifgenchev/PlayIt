@@ -1,69 +1,70 @@
 <% provide(:title, @event.name) %>
-<div class="jumbotron center container-fluid">
+<div class="jumbotron jumbotron-fluid center">
 	<% unless @event.sport.picture.nil? %>
 		<%= link_to image_tag(@event.sport.picture, class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
 	<% end %>
 	<span class="game"><%= @event.name %></span><br>
 </div>
-<div class="container">
 
-	<div class="col-md-4 center">
-		<div id="event-<%= @event.id %>">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="progress">
+			  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(@event) %>" aria-valuemin="0" aria-valuemax="<%= @event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(@event) %>%;">
+			    	<%= @userEventCount %> / <%= @event.number_of_attendees_needed %>
+			  	</div>
+			</div>
 
-		  <span class="timestamp">
-		    Posted <%= time_ago_in_words(@event.created_at) %> ago by <%= link_to @event.user.name, @event.user %>
-		  </span><br>
-		  <span class="place"><%= link_to @event.place.name, @event.place %></span><br>
-		  <% unless @event.place.picture.nil? %>
-		  	<%= link_to image_tag(@event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), '#' %>
-		  <% end %>
-		  <span class="description">Additional info: <%= @event.description %></span><br>
-		</div>
-	</div>
-	<div class="col-md-4">
-	<div class="progress">
-		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(@event) %>" aria-valuemin="0" aria-valuemax="<%= @event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(@event) %>%;">
-		    	<%= @userEventCount %> / <%= @event.number_of_attendees_needed %>
-		  	</div>
-		  </div>
-	  <ol>
-		<% @event.attendees.each do |attendee| %>
-		   <li><%= (attendee.picture?) ? 
-		   			image_tag(attendee.picture.url, class: "img-circle", size: '25x25' ) :
-		   			image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '25x25' ) %>
-		   		<%= link_to attendee.name, attendee %>
-		   	</li>
-		   	<br>
-		<% end %>
-	  </ol>
-	  <% if logged_in? %>
-		<div class="text-center"><%= render 'attend_form' %></div>
-	  <% end %>
-	</div>
-	<div class="col-md-4">
-		<%= @event.place.lat %>
-		<%= @event.place.lng %>
-		<%=raw @hash.to_json %>
-		<div style='width: 400px;'>
-		  <div id="map" style='width: 400px; height: 400px;'></div>
+		  	<ol>
+				<% @event.attendees.each do |attendee| %>
+			   		<li><%= (attendee.picture?) ? 
+			   			image_tag(attendee.picture.url, class: "img-circle", size: '25x25' ) :
+			   			image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '25x25' ) %>
+			   			<%= link_to attendee.name, attendee %>
+			   		</li>
+			   		<br>
+				<% end %>
+		  	</ol>
+			<div class="text-center"><%= render 'attend_form' %></div>
 		</div>
 	</div>
 
-</div>
+	<hr>
 
-<script type="text/javascript">
-	handler = Gmaps.build('Google');
-	handler.buildMap({ 
-		provider: {
-			zoom: 8
-		}, 
-		internal: {
-			id: 'map'
-		}
-	}, function(){
-	  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-	  handler.bounds.extendWith(markers);
-	  handler.fitMapToBounds();
-	  handler.getMap().setZoom(17);
-	});
-</script>
+	<div class="row">
+		<div class="col-md-6">
+			<div id="event-<%= @event.id %>">
+
+			  <span class="timestamp">
+			    Posted <%= time_ago_in_words(@event.created_at) %> ago by <%= link_to @event.user.name, @event.user %>
+			  </span><br>
+			  <span class="place"><%= link_to @event.place.name, @event.place %></span><br>
+			  <% unless @event.place.picture.nil? %>
+			  	<%= link_to image_tag(@event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), '#' %>
+			  <% end %>
+			  <span class="description">Additional info: <%= @event.description %></span><br>
+			</div>
+		</div>
+
+		
+
+		<div class="col-md-6">
+			<div id="geocomplete" class="map_canvas"></div>
+		</div>
+	</div>
+
+	<%= link_to "Edit event", edit_event_path(@event) %>
+
+<script>
+
+      $(function(){
+      	var lat = <%= @event.place.lat %>;
+      	var lng = <%= @event.place.lng %>;
+
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          types: ["geocode", "establishment"],
+          location: [lat, lng]
+        });
+
+      });
+    </script>

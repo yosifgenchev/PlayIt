@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+match 'auth/:provider/callback', to: 'sessions#createFacebook', via: [:get, :post]
+match 'auth/failure', to: redirect('/'), via: [:get, :post]
+match 'signout', to: 'sessions#destroyFacebook', as: 'signout', via: [:get, :post]
+
   get    '/events/new',   to: 'events#new'
   post   '/events/new',   to: 'events#create'
 
@@ -17,9 +21,9 @@ Rails.application.routes.draw do
   post   '/login',   	to: 'sessions#create'
   delete '/logout',  	to: 'sessions#destroy'
 
-  get 'auth/:provider/callback', to: 'sessions#createFacebook'
-  get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroyFacebook', as: 'signout'
+
+  get '/places/new', to: 'places#new'
+  post '/places/new', to: 'places#create'
 
   resources :users
   resources :places

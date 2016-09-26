@@ -10,9 +10,9 @@
       <%= f.label :description %>
       <%= f.text_field :description, class: 'form-control' %>
 
-      <%= f.collection_select(:sport_id, Sport.all, :id, :name) %>
+      <%= f.hidden_field :place_id, class: 'form-control', :value => params['place_id_param'] %>
 
-      <%= f.collection_select(:place_id, Place.all, :id, :name) %>
+      <%= f.collection_select(:sport_id, Sport.all, :id, :name) %>
 
       <%= f.label :number_of_players %>
       <%= f.text_field :number_of_attendees_needed, class: 'form-control' %>

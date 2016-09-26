@@ -58,4 +58,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     log_in_as(@user, remember_me: '0')
     assert_nil cookies['remember_token']
   end
+
+  test "should get new when logged in" do
+    get login_path
+    post login_path, session: { email: @user.email, password: 'password' }
+    assert is_logged_in?
+    get events_new_path
+    assert_response :success
+  end
 end
