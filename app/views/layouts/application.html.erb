@@ -4,11 +4,15 @@
     <title><%= yield(:title) %> | Sporticted</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="//maps.google.com/maps/api/js?key=AIzaSyC3v0ocNoirDZakMBpvRRLtoLmkob2gWM0&libraries=places"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="//maps.google.com/maps/api/js?key=AIzaSyCWLihxf_olIKUTmvCMH6WzSCMNEoAMKY0"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="/assets/jquery.geocomplete.js"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
     <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
   </head>
 

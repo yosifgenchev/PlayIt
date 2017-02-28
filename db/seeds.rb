@@ -21,3 +21,7 @@ User.create!(name:  "Example User",
               password:              password,
               password_confirmation: password)
 end
+
+Sport.create(name: "Football")
+Sport.create(name: "Basketball")
+Sport.create(name: "Tennis")

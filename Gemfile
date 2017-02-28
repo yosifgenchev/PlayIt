@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'gmaps-autocomplete-rails'
+gem 'geocomplete_rails'
 # Turbolinks makes navigating your web application faster.
 # Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5.x'
@@ -41,12 +43,14 @@ gem 'rails-controller-testing'
 
 gem 'faker',          		'1.6.3'
 
+gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
-gem 'gmaps-autocomplete-rails'
 
 gem 'rack-cache'
 gem 'nokogiri', '~> 1.6.1'
+
+gem 'google_places'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution

@@ -201,12 +201,19 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    geocoder (1.4.3)
+    geocomplete_rails (1.7.0)
+      railties (>= 3.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gmaps-autocomplete-rails (0.2.0)
       rails (>= 3.1.0)
     gmaps4rails (2.1.2)
+    google_places (0.21.0)
+      httparty
     hashie (3.4.6)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.3)
@@ -364,8 +371,11 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   faker (= 1.6.3)
   fog (= 1.38.0)
+  geocoder
+  geocomplete_rails
   gmaps-autocomplete-rails
   gmaps4rails
+  google_places
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails

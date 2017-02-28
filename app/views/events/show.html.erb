@@ -47,24 +47,31 @@
 
 		
 
-		<div class="col-md-6">
-			<div id="geocomplete" class="map_canvas"></div>
-		</div>
+		<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
 	</div>
 
 	<%= link_to "Edit event", edit_event_path(@event) %>
 
+
+
+
 <script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {
+						draggable: true
+						//minZoom:
+						//maxZoom
+					}, internal: {
+						id: 'map'
+					}
+				}, function(){
+  markers = handler.addMarkers(<%= raw @hash.to_json %>);
+  handler.map.centerOn(markers[0]);
+  handler.bounds.extendWith(markers);
+  handler.getMap().setZoom(18);
+});
 
-      $(function(){
-      	var lat = <%= @event.place.lat %>;
-      	var lng = <%= @event.place.lng %>;
-
-        $("#geocomplete").geocomplete({
-          map: ".map_canvas",
-          types: ["geocode", "establishment"],
-          location: [lat, lng]
-        });
-
-      });
-    </script>
+</script>
