@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
 	belongs_to :user
-	belongs_to :sport
 	belongs_to :place
+	belongs_to :sport
 
 	has_many :userevents, foreign_key: :attended_event_id
 	has_many :attendees, through: :userevents
