@@ -16,9 +16,7 @@
       <% if logged_in? %>
         <ul class="nav navbar-nav navbar-left">
           <li><%= link_to "Create event", places_new_path %></li>
-          <!--
-          <li><%= link_to "Create place", places_new_path %></li>
-          -->
+          <li><%= link_to "Create league", places_new_path %></li>
         </ul>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
@@ -33,11 +31,11 @@
                 <li class="navbar-avatar">
 
                 <% if (current_user.uid.nil?) %>
-                    <%= !current_user.picture.nil? ? 
+                    <%= current_user.picture.nil? ? 
                       image_tag(current_user.picture, class: "img-circle", size: "30x30") :
                       image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: "30x30" ) %>
                 <% else %>
-                  <%= current_user.picture.nil? ? 
+                  <%= !current_user.picture.nil? ? 
                     image_tag("https://graph.facebook.com/v2.6/#{current_user.uid}/picture", class: "img-circle", size: "30x30") :
                     image_tag(current_user.picture, class: "img-circle", size: "30x30") %>
                 <% end %>

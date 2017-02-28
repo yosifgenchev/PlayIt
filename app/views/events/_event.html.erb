@@ -1,13 +1,11 @@
 <div class="col-md-4 center">
 	<div class="thumbnail">
 		<div id="event-<%= event.id %>">
-		  <%= link_to image_tag(event.sport.picture, alt: "Sport picture"), '#' %>
+		  <%= link_to image_tag("https://media5.fcbarcelona.com/html/museu/info-en-v5.0/images/galerias/10-terreny-de-joc/1.jpg", alt: "Sport picture"), '#' %>
+		  <!-- <span class="game"><%= event.name %></span> -->
+		  <!-- <span class="description">Additional info: <%= event.description %></span> -->
 		  <br>
-		  <span class="game"><%= event.name %></span>
-		  <br>
-		  <span class="description">Additional info: <%= event.description %></span>
-		  <br>
-		  <span class="place"><%= link_to event.place.name, event.place %></span>
+		  <!-- <span class="place"><%= link_to event.place.name, event.place %></span> -->
 		  <% unless event.place.picture.nil? %>
 		  <%= link_to image_tag(event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), event %>
 		  <% end %>
@@ -17,7 +15,16 @@
 		  	</div>
 		  </div>
 		  
-		  <%= link_to "Wanna play!", event, class: "btn btn-md btn-primary" %>
+
+		  
+
+		  <%= link_to image_tag("my-icons-collection/png/#{event.sport.name}.png", class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
+
+		  <% if current_user.attending?(event) %> 
+		  	<%= link_to "Check the game!", event, class: "btn btn-md btn-primary" %>
+		  <% else %>
+		  	<%= link_to "Wanna play!", event, class: "btn btn-md btn-primary" %>
+		  <% end %>
 
 		  <br>
 		  <br>

@@ -79,6 +79,10 @@ class User < ApplicationRecord
     self.userevents.find_by(attended_event_id: event.id).destroy
   end
 
+  def destroyEvent!(event)
+    self.events.find_by(id: event.id).destroy
+  end
+
   private
 
   # Validates the size of an uploaded picture.

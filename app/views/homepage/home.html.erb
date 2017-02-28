@@ -12,10 +12,12 @@
 
 <br>
 
-<div class="row">
-	<% unless @events.nil? %>
-		<% @events.each do |event| %>
-			<%= render event %>
+<% if logged_in? %>
+	<div class="row">
+		<% unless @sorted_events.nil? %>
+			<% @sorted_events.each do |event| %>
+				<%= render event %>
+			<% end %>
 		<% end %>
-	<% end %>
-</div>
+	</div>
+<% end %>

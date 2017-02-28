@@ -9,6 +9,9 @@ class Event < ApplicationRecord
 	default_scope -> { order(created_at: :desc) }
 	validates :user_id, presence: true
 	validates :sport_id, presence: true
+	
+	validates :number_of_attendees_needed, presence: true
+	validates_presence_of :name
 
 	private
 

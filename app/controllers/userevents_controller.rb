@@ -7,7 +7,14 @@ class UsereventsController < ApplicationController
 
   def destroy
     @event = Userevent.find(params[:id]).attended_event
-    current_user.cancel!(@event)
-    redirect_to @event
+    @host = Userevent.find(params[:id]).attended_event.user
+
+    if (current_user != @host)
+      current_user.cancel!(@event)
+      redirect_to @event
+    else
+      current_user.destroyEvent!(@event)
+      redirect_to root_url
+    end
   end
 end

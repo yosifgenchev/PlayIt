@@ -5,7 +5,7 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@place, url: places_new_path) do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name, :id => 'geocomplete', :type => 'text', :placeholder => 'Start typing a place...' %>
+      <%= f.text_field :name, :id => 'geocomplete', :type => 'text', :placeholder => 'Start typing a place...', :maxLength => 45, :size => 45 %>
 
       <%= f.label :description %>
       <%= f.text_field :description, class: 'form-control' %>
