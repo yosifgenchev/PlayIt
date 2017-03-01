@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require underscore
 //= require geocomplete
+//= require jquery.geocomplete
 //= require gmaps/google
 //= require gmaps-auto-complete
 //= require_tree .
