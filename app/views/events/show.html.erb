@@ -47,9 +47,9 @@
 
 		
 
-		<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
+		<div class="col-md-6">
+		  <div id="map" style='height: 400px;'></div>
+		</div>
 
 	</div>
 
@@ -61,7 +61,7 @@
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {
-						draggable: true
+						draggable: false
 						//minZoom:
 						//maxZoom
 					}, internal: {
