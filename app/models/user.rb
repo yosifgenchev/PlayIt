@@ -19,7 +19,7 @@ class User < ApplicationRecord
  	validates :password, presence: true, 
  						 length: { minimum: 6 }
 
- 	 has_secure_password
+ 	has_secure_password
 
   validate  :picture_size
 
@@ -62,6 +62,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.picture = auth.info.image
       user.oauth_token = auth.credentials.token
+      user.password = user.password_confirmation = SecureRandom.urlsafe_base64(n=6)
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end
