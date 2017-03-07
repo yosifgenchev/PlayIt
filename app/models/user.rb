@@ -58,11 +58,19 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.provider = auth.provider
       user.uid = auth.uid
+      byebug
       user.name = auth.info.name
       user.email = auth.info.email
+
+      if (User.find_by_email(user.email).nil?)
+        user.email = User.find_by_email(user.email).email
+      end
+
       user.picture = auth.info.image
       user.oauth_token = auth.credentials.token
-      user.password = user.password_confirmation = SecureRandom.urlsafe_base64(n=6)
+      user.password = user.password_confirmation = User.exists?(user.email)? 
+                                                    User.find_by_email(user.email).password_digest 
+                                                    : SecureRandom.urlsafe_base64(n=6)
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end

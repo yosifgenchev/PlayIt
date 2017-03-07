@@ -1,5 +1,14 @@
 <% provide(:title, 'Choose a place') %>
-<h1>Choose a place</h1>
+<h1>Create event</h1>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0"
+  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    <span class="sr-only">70% Complete</span>
+  </div>
+</div>
+
+<h2>Choose a place</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -7,20 +16,12 @@
       <%= f.label :name %>
       <%= f.text_field :name, :id => 'geocomplete', :type => 'text', :placeholder => 'Start typing a place...', :maxLength => 45, :size => 45 %>
 
-      <%= f.label :description %>
-      <%= f.text_field :description, class: 'form-control' %>
-
       <%= f.text_field :lat, class: 'form-control', :datageo => 'lat', :type => 'hidden' %>
       <%= f.text_field :lng, class: 'form-control', :datageo => 'lng', :type => 'hidden' %>
 
-      <%= f.submit "Create place", class: "btn btn-primary" %>
+      <%= f.submit "Next", class: "btn btn-primary" %>
     <% end %>
   </div>
-</div>
-
-<div class="row">
-  
-
 </div>
 
 <script>

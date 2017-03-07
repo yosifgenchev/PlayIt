@@ -11,7 +11,6 @@ class PlacesController < ApplicationController
 	def create
 	  	@place = Place.new(place_params)
 	  	if @place.save
-	  		flash[:success] = "Place created!"
 	  		redirect_to controller: 'events', action: 'new', place_id_param: @place.id
 	  	else
 	  		render 'new'

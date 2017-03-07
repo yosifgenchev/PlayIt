@@ -34,6 +34,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if logged_in?
+      log_out
+    end
+  end
+
   private
 
   def user_params

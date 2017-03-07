@@ -1,15 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="jumbotron container-fluid center">
 
-		<% if (@user.uid.nil?) %>
-			<%= @user.picture.nil? ? 
-	            image_tag(@user.picture, class: "img-circle", size: '100x100') :
-	            image_tag('default_profile_picture/default_profile_picture.jpg', class: "img-circle", size: '100x100') %>
-	    <% else %>
-	    	<%= !@user.picture.nil? ? 
-	            image_tag("http://graph.facebook.com/v2.6/#{@user.uid}/picture", class: "img-circle", size: "100x100") :
-	            image_tag(@user.picture, class: "img-circle", size: '100x100') %>
-	    <% end %>
+		<%= gravatar_for @user, 100 %>
 
 		<h1>
 			<%= @user.name %>
@@ -19,12 +11,21 @@
 		</h3>
 </div>
 
-<div class="container">
-	<div class="row">	
-		<% @user.events.each do |e| %>
-			<%= e.name %>
+<h1>Events created by you</h1>
+
+<div class="row">
+	<% @user.events.each do |e| %>
+		<%= render e %>
+	<% end %>
+</div>
+
+<h1>Events you're attending</h1>
+<div class="row">	
+	<% userevents.each do |userevent| %>
+		<% if userevent.attendee_id == @user.id %>
+			<p><%= render Event.find(userevent.attended_event_id) %></p>
 		<% end %>
-	</div>
+	<% end %>
 </div>
 
 
