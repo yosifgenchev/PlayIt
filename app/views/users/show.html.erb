@@ -1,20 +1,27 @@
 <% provide(:title, @user.name) %>
 <div class="jumbotron container-fluid center">
 
-		<%= gravatar_for @user, 100 %>
+	<%= gravatar_for @user, 100 %>
 
-		<h1>
-			<%= @user.name %>
-		</h1>
-		<h3>
-			<%= @user.email %>
-		</h3>
+	<h1>
+		<%= @user.name %>
+	</h1>
+	<h3>
+		<%= @user.email %>
+	</h3>
 </div>
 
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div id="calendar"></div>
+	</div>
+</div>
 
-<div id="calendar"></div>
+<hr />
 
-<%= render @user.events %>
+<div class="row">
+	<%= render @user.events %>
+</div>
 
 <script type="text/javascript">
 
