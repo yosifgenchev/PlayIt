@@ -61,10 +61,6 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.email = auth.info.email
 
-      if (User.find_by_email(user.email).nil?)
-        user.email = User.find_by_email(user.email).email
-      end
-
       user.picture = auth.info.image
       user.oauth_token = auth.credentials.token
       user.password = user.password_confirmation = User.exists?(user.email)? 
