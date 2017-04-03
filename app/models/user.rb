@@ -58,7 +58,6 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      byebug
       user.name = auth.info.name
       user.email = auth.info.email
 
