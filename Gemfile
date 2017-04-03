@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
 gem 'geocomplete_rails'
+
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 # Turbolinks makes navigating your web application faster.
 # Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5.x'
@@ -29,6 +31,11 @@ gem 'jbuilder', '~> 2.0'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+
+gem 'pickadate-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

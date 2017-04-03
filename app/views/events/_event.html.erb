@@ -2,7 +2,7 @@
 	<div class="thumbnail">
 		<div id="event-<%= event.id %>">
 		  <%= link_to image_tag("https://media5.fcbarcelona.com/html/museu/info-en-v5.0/images/galerias/10-terreny-de-joc/1.jpg", alt: "Sport picture"), '#' %>
-		  <!-- <span class="game"><%= event.name %></span> -->
+		  <!-- <span class="game"><%= event.title %></span> -->
 		  <!-- <span class="description">Additional info: <%= event.description %></span> -->
 		  <br>
 		  <!-- <span class="place"><%= link_to event.place.name, event.place %></span> -->
@@ -15,11 +15,12 @@
 		  	</div>
 		  </div>
 		  
-
-		  
-
 		  <%= link_to image_tag("my-icons-collection/png/#{event.sport.name}.png", class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
 
+		  <div class="row">
+		  	Start: <%= event.start %>
+		  </div>
+		  
 		  <% if current_user.attending?(event) %> 
 		  	<%= link_to "Check the game!", event, class: "btn btn-md btn-primary" %>
 		  <% else %>
@@ -34,6 +35,12 @@
 		  <br>
 		  <span class="timestamp">
 		    Posted <%= time_ago_in_words(event.created_at) %> ago
+		  </span>
+		  <br>
+		  <span class="timestamp">
+		  	<% if !event.start.nil? %>
+		  		<%= distance_of_time_in_words(Time.current, event.start) %> left
+		  	<% end %>
 		  </span>
 		</div>
 	</div>

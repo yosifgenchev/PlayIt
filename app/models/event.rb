@@ -3,15 +3,15 @@ class Event < ApplicationRecord
 	belongs_to :place
 	belongs_to :sport
 
-	has_many :userevents, foreign_key: :attended_event_id
-	has_many :attendees, through: :userevents
+	has_many :userevents, foreign_key: :attended_event_id, dependent: :destroy
+	has_many :attendees, through: :userevents, dependent: :destroy
 
-	default_scope -> { order(created_at: :desc) }
+	default_scope -> { order(created_at: :asc) }
 	validates :user_id, presence: true
 	validates :sport_id, presence: true
 	
 	validates :number_of_attendees_needed, presence: true
-	validates_presence_of :name
+	validates_presence_of :title
 
 	private
 

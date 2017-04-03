@@ -196,8 +196,10 @@ input {
   float: right;
 }
 
-.thumbnail {
-  background-color: #090909;  
+
+
+.thumbnail:hover {
+  border-color: black;
 }
 
 .gravatar_edit {

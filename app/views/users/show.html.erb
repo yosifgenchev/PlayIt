@@ -11,21 +11,21 @@
 		</h3>
 </div>
 
-<h1>Events created by you</h1>
 
-<div class="row">
-	<% @user.events.each do |e| %>
-		<%= render e %>
-	<% end %>
-</div>
+<div id="calendar"></div>
 
-<h1>Events you're attending</h1>
-<div class="row">	
-	<% userevents.each do |userevent| %>
-		<% if userevent.attendee_id == @user.id %>
-			<p><%= render Event.find(userevent.attended_event_id) %></p>
-		<% end %>
-	<% end %>
-</div>
+<%= render @user.events %>
 
+<script type="text/javascript">
 
+var attendedEvents = <%= raw @user.events.to_json %>;
+
+	$('#calendar').fullCalendar({
+		header: {
+	        left: "prev,next,today",
+	        center: "title",
+	        right: "month,agendaWeek,agendaDay"
+    	},
+    	events: attendedEvents
+	});
+</script>

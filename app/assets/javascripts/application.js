@@ -20,4 +20,10 @@
 //= require jquery.geocomplete
 //= require gmaps/google
 //= require gmaps-auto-complete
+//= require moment 
+//= require fullcalendar
+//= require pickadate/picker
+//= require pickadate/picker.date
+//= require pickadate/picker.time
+//= require bootstrap-datetimepicker
 //= require_tree .

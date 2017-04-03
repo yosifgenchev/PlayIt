@@ -1,9 +1,9 @@
-<% provide(:title, @event.name) %>
+<% provide(:title, @event.title) %>
 <div class="jumbotron jumbotron-fluid center">
 	<% unless @event.sport.picture.nil? %>
 		<%= link_to image_tag(@event.sport.picture, class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
 	<% end %>
-	<span class="game"><%= @event.name %></span><br>
+	<span class="game"><%= @event.title %></span><br>
 </div>
 
 	<div class="row">
