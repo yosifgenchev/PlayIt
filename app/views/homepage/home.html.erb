@@ -14,7 +14,7 @@
 
 <% if logged_in? %>
 	<div class="row">
-		<% unless @sorted_events.nil? %>
+		<% unless @sorted_events_by_created_at.nil? %>
 			<% @sorted_events.each do |event| %>
 				<%= render event %>
 			<% end %>

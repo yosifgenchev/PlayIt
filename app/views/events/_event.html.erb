@@ -38,8 +38,10 @@
 		  </span>
 		  <br>
 		  <span class="timestamp">
-		  	<% if !event.start.nil? %>
+		  	<% if Time.current < event.start %>
 		  		<%= distance_of_time_in_words(Time.current, event.start) %> left
+		  	<% else %>
+		  		Event ended!
 		  	<% end %>
 		  </span>
 		</div>

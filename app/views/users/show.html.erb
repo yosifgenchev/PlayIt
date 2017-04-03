@@ -19,8 +19,19 @@
 
 <hr />
 
+
 <div class="row">
-	<%= render @user.events %>
+	<h2>Events you've created:</h2>
+	<% @user.events.each do |e| %>
+ 		<%= render e %>
+ 	<% end %>
+</div>
+
+<div class="row">
+	<h2>Events you're attending:</h2>
+	<% @user.userevents.each do |userevent| %>
+ 		<%= render Event.find(userevent.attended_event_id) %>
+ 	<% end %>
 </div>
 
 <script type="text/javascript">

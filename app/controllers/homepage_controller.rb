@@ -5,6 +5,6 @@ class HomepageController < ApplicationController
   	 	@events = @events + user.events
   	 end
 
-     @sorted_events = @events.sort_by(&:created_at).reverse
+     @sorted_events_by_created_at = @events.sort_by(&:created_at).reverse
   end
 end

@@ -51,7 +51,6 @@ class EventsController < ApplicationController
   								                :sport_id, 
   								                :place_id,
   								                :number_of_attendees_needed,
-                                  :date,
                                   :start,
                                   :end)
   end
