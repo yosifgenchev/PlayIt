@@ -1,50 +1,50 @@
-<div class="col-md-4 center">
-	<div class="thumbnail">
-		<div id="event-<%= event.id %>">
-		  <%= link_to image_tag("https://media5.fcbarcelona.com/html/museu/info-en-v5.0/images/galerias/10-terreny-de-joc/1.jpg", alt: "Sport picture"), '#' %>
-		  <!-- <span class="game"><%= event.title %></span> -->
-		  <!-- <span class="description">Additional info: <%= event.description %></span> -->
-		  <br>
-		  <!-- <span class="place"><%= link_to event.place.name, event.place %></span> -->
-		  <% unless event.place.picture.nil? %>
-		  <%= link_to image_tag(event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), event %>
-		  <% end %>
-		  <div class="progress">
-		  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(event) %>" aria-valuemin="0" aria-valuemax="<%= event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(event) %>%;">
-		    	<%= @userEventCount %> / <%= event.number_of_attendees_needed %>
-		  	</div>
-		  </div>
-		  
-		  <%= link_to image_tag("my-icons-collection/png/#{event.sport.name}.png", class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
+<% if Time.current < event.start %>
+	<div class="col-md-4 center">
+		<div class="thumbnail">
+			<div id="event-<%= event.id %>">
+			  <%= link_to image_tag("https://media5.fcbarcelona.com/html/museu/info-en-v5.0/images/galerias/10-terreny-de-joc/1.jpg", alt: "Sport picture"), '#' %>
+			  <!-- <span class="game"><%= event.title %></span> -->
+			  <!-- <span class="description">Additional info: <%= event.description %></span> -->
+			  <br>
+			  <!-- <span class="place"><%= link_to event.place.name, event.place %></span> -->
+			  <% unless event.place.picture.nil? %>
+			  <%= link_to image_tag(event.place.picture, class: "thumbnail img-responsive", alt: "Place picture"), event %>
+			  <% end %>
+			  <div class="progress">
+			  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= attendees_ratio(event) %>" aria-valuemin="0" aria-valuemax="<%= event.number_of_attendees_needed %>" style="width: <%= attendees_ratio(event) %>%;">
+			    	<%= @userEventCount %> / <%= event.number_of_attendees_needed %>
+			  	</div>
+			  </div>
+			  
+			  <%= link_to image_tag("my-icons-collection/png/#{event.sport.name}.png", class: "thumbnail img-responsive", alt: "Sport picture"), '#' %>
 
-		  <div class="row">
-		  	Start: <%= event.start %>
-		  </div>
-		  
-		  <% if current_user.attending?(event) %> 
-		  	<%= link_to "Check the game!", event, class: "btn btn-md btn-primary" %>
-		  <% else %>
-		  	<%= link_to "Wanna play!", event, class: "btn btn-md btn-primary" %>
-		  <% end %>
+			  <div class="row">
+			  	<b>Start:</b> <%= event.start.strftime("%B %d, %Y at %I:%M%p") %>
+			  </div>
+			  
+			  <% if current_user.attending?(event) %> 
+			  	<%= link_to "Check the game!", event, class: "btn btn-md btn-primary" %>
+			  <% else %>
+			  	<%= link_to "Wanna play!", event, class: "btn btn-md btn-primary" %>
+			  <% end %>
 
-		  <br>
-		  <br>
-		  <%= image_tag(event.user.picture.url, class: "img-circle", size: '25x25' ) if event.user.picture? %>
-		  <%= gravatar_for event.user, 30 %>
-		  <%= link_to event.user.name, event.user %>
-		  <br>
-		  <span class="timestamp">
-		    Posted <%= time_ago_in_words(event.created_at) %> ago
-		  </span>
-		  <br>
-		  <span class="timestamp">
-		  	<% if Time.current < event.start %>
-		  		<%= distance_of_time_in_words(Time.current, event.start) %> left
-		  	<% else %>
-		  		Event ended!
-		  	<% end %>
-		  </span>
+			  <br>
+			  <br>
+			  <%= image_tag(event.user.picture.url, class: "img-circle", size: '25x25' ) if event.user.picture? %>
+			  <%= gravatar_for event.user, 30 %>
+			  <%= link_to event.user.name, event.user %>
+			  <br>
+			  <span class="timestamp">
+			    Posted <%= time_ago_in_words(event.created_at) %> ago
+			  </span>
+			  <br>
+			  <% if Time.current < event.start %>
+				<span class="timestamp">
+					<%= distance_of_time_in_words(Time.current, event.start) %> left
+				</span>
+			  <% end %>
+			</div>
 		</div>
+		<br>
 	</div>
-	<br>
-</div>
+<% end %>
