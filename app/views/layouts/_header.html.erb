@@ -30,10 +30,12 @@
                 <li><%= link_to "#{sport.name}", sport_path(sport) %></li>
               <% end %>
               
+              <% if logged_in? && current_user.admin? %>
                 <% if Sport.all.any? %>
                   <li role="separator" class="divider"></li>
                 <% end %>
                 <li><%= link_to "Create a new sport category", new_sport_path %></li>
+              <% end %>
             </ul>
           </li>
         </ul>
@@ -48,6 +50,7 @@
 
                 <%= gravatar_for current_user, 30 %>
                 <%= current_user.name %>
+                <%= "Admin" if current_user.admin? %>
 
                 </li>
               </button>

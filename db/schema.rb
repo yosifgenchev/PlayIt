@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309014019) do
+ActiveRecord::Schema.define(version: 20170429145842) do
 
   create_table "events", force: :cascade do |t|
     t.text     "description"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170309014019) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "picture"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["provider"], name: "index_users_on_provider"
