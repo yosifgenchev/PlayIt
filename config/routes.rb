@@ -24,6 +24,7 @@ match 'signout', to: 'sessions#destroyFacebook', as: 'signout', via: [:get, :pos
   post '/places/new', to: 'places#create'
 
 
+  resources :sports
   resources :users
   resources :places
   resources :events
